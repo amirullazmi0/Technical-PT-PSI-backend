@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from "class-validator";
-import { v4 as uuidv4, UUIDTypes } from 'uuid';
+import { UUIDTypes } from 'uuid';
 
 export class AuthLoginRequestDto {
   @IsString()

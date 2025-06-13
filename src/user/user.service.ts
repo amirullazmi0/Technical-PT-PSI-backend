@@ -54,4 +54,26 @@ export class UserService {
       data: formatedData
     }
   }
+
+  async generateData() {
+    const warna = ["merah", "kuning", "hijau", "pink", "ungu", "maroon"];
+    const pakaian = ["baju", "celana", "topi", "jaket", "sepatu"];
+    const status = ["diskon", "sale", "diskon", "sale", "sale"];
+
+    let hasil = [];
+
+
+    for (let i = 0; i < warna.length; i++) {
+      const ww = warna[i];
+      const pp = pakaian[i % pakaian.length];
+      const ss = status[i % status.length];
+
+      console.log('index', `${i} ${i % pakaian.length} ${i % status.length}`);
+      hasil.push(`${pp} ${ww} ${ss}`);
+    }
+
+    return hasil;
+  }
+
+
 }

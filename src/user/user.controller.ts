@@ -21,4 +21,9 @@ export class UserController {
       results: results
     })
   }
+
+  @Get('generate-data')
+  async generateData() {
+    return await this.userService.generateData()
+  }
 }
