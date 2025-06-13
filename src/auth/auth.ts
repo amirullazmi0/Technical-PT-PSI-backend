@@ -1,69 +1,45 @@
-import { IsString, IsEmail, IsPhoneNumber, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsString } from "class-validator";
+import { v4 as uuidv4, UUIDTypes } from 'uuid';
 
-export interface UserDtoInterface {
-  id: string;
-  nama: string;
-  email: string | null;
-  telp: string;
+export class AuthLoginRequestDto {
+  @IsString()
+  @IsNotEmpty()
+  username: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 }
 
-export class UserDto {
+export class AuthRegisterRequestDto {
   @IsString()
-  id: string;
+  @IsNotEmpty()
+  fullName: string;
 
   @IsString()
-  nama: string;
+  @IsNotEmpty()
+  username: string;
 
-  @IsEmail()
-  @IsOptional() // Email bisa null, sehingga optional
-  email: string | null;
-
-  @IsPhoneNumber('ID')
-  telp: string;
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 }
 
-export class CompanyDto {
-  @IsString()
-  id: string;
-
-  @IsString()
-  user_id: string;
-
-  @IsString()
-  company_code: string;
-
-  @IsString()
-  company_name: string;
+export interface AuthLoginResponse {
+  token: string;
 }
 
+export interface AuthRegisterResponse {
+  id: UUIDTypes;
+  fullName: string;
+  username: string;
+}
 
+export interface AuthUserInterface {
+  id: UUIDTypes;
+  fullName: string;
+  username: string;
+  password: string;
+}
 
-export const usersData: UserDto[] = [
-  {
-    id: '12qwer',
-    nama: 'Imron',
-    email: null,
-    telp: '081234567890',
-  },
-  {
-    id: '321rewq',
-    nama: 'Juli',
-    email: 'Sammy@mail.com',
-    telp: '0987654321',
-  },
-];
-
-export const companiesData: CompanyDto[] = [
-  {
-    id: 'trew098',
-    user_id: '12qwer',
-    company_code: 'SPI',
-    company_name: 'Samudera',
-  },
-  {
-    id: 'poiuyt1234',
-    user_id: '321rewq',
-    company_code: 'PIC',
-    company_name: 'Samudera',
-  },
-];
+export const authUserData: AuthUserInterface[] = []
