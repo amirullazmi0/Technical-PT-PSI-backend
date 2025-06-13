@@ -1,44 +1,41 @@
-import { IsString, IsEmail, IsPhoneNumber, IsOptional } from 'class-validator';
+import { IsNumberString, IsOptional } from "class-validator";
+
+export class RandomUserDto {
+  @IsOptional()
+  @IsNumberString()
+  results: string
+
+  @IsOptional()
+  @IsNumberString()
+  page: string
+}
+
 
 export interface UserDtoInterface {
-  id: string;
-  nama: string;
-  email: string | null;
-  telp: string;
+  id?: string;
+  nama?: string;
+  email?: string;
+  telp?: string;
 }
 
-export class UserDto {
-  @IsString()
-  id: string;
-
-  @IsString()
-  nama: string;
-
-  @IsEmail()
-  @IsOptional()
-  email: string | null;
-
-  @IsPhoneNumber('ID')
-  telp: string;
+export interface CompanyDtoInterface {
+  id?: string;
+  user_id?: string;
+  company_code?: string;
+  company_name?: string;
 }
 
-export class CompanyDto {
-  @IsString()
-  id: string;
-
-  @IsString()
+export interface UserCompanyDtoInterface {
   user_id: string;
-
-  @IsString()
+  company_id: string;
+  name: string;
+  email: string;
+  telp: string;
   company_code: string;
-
-  @IsString()
   company_name: string;
 }
 
-
-
-export const usersData: UserDto[] = [
+export const usersData: UserDtoInterface[] = [
   {
     id: '12qwer',
     nama: 'Imron',
@@ -51,13 +48,25 @@ export const usersData: UserDto[] = [
     email: 'Sammy@mail.com',
     telp: '0987654321',
   },
+  {
+    id: null,
+    nama: 'Gajah Mada',
+    email: null,
+    telp: null,
+  },
 ];
 
-export const companiesData: CompanyDto[] = [
+export const companiesData: CompanyDtoInterface[] = [
   {
     id: 'trew098',
     user_id: '12qwer',
     company_code: 'SPI',
+    company_name: null,
+  },
+  {
+    id: null,
+    user_id: null,
+    company_code: null,
     company_name: 'Samudera',
   },
   {
